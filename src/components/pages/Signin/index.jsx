@@ -1,3 +1,4 @@
+import { useState } from 'react';
 import { useNavigate } from 'react-router-dom';
 import './index.scss';
 
@@ -5,9 +6,23 @@ const Signin = () => {
 
   const navigate = useNavigate();
 
+  const [userId, setUserId] = useState('');
+  const [password, setPassword] = useState('');
+
+  const handleUserId = (event) => {
+    setUserId(event.target.value);
+  }
+  
+  const handlePassword = (event) => {
+    setPassword(event.target.value);
+  }
+
   const executeSignin = () => {
     // 未実装
-    alert('exec Sign in')
+    if (!(userId === 'admin' && password === 'admin')) return;
+
+    sessionStorage.setItem('userId', userId);
+    navigate('/PackingList');
   }
 
   const goToSignup = () => {
@@ -16,8 +31,14 @@ const Signin = () => {
 
   return (
     <div id='signin'>
-      <input type='text' placeholder='ID' />
-      <input type='password' placeholder='パスワード' />
+      <input type='text'
+             value={userId}
+             onChange={handleUserId}
+             placeholder='UserID' />
+      <input type='password'
+             value={password}
+             onChange={handlePassword}
+             placeholder='パスワード' />
       <button onClick={executeSignin}>Sign in</button>
       <button onClick={goToSignup}>Sign up</button>
     </div>
