@@ -1,4 +1,5 @@
 import { useState } from "react";
+import './index.scss';
 
 const PackingList = () => {
 
@@ -56,18 +57,21 @@ const PackingList = () => {
       <div>
         <label>{`userID:${userId}`}</label>
       </div>
-      <input type='text'
-             id='item-name'
-             value={itemName}
-             onChange={handleItemName}
-             placeholder='new Item'/>
-      <button onClick={addItem}>add</button>
+      <div style={{display:"flex"}}>
+        <input type='text'
+              id='item-name'
+              value={itemName}
+              onChange={handleItemName}
+              placeholder='アイテム'/>
+        <button onClick={addItem}>add</button>
+      </div>
       <table>
         <thead>
           <tr>
             <th>ID</th>
             <th>Name</th>
             <th>Packed</th>
+            <th></th>
           </tr>
         </thead>
         <tbody>
