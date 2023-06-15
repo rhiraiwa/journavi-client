@@ -3,6 +3,7 @@ import Signin from "./components/pages/Signin";
 import Signup from "./components/pages/Signup";
 import PackingList from "./components/pages/PackingList";
 import Schedule from "./components/pages/Schedule";
+import Plan from "./components/pages/Plan";
 
 function App() {
   return (
@@ -12,6 +13,7 @@ function App() {
         <Route path='/Signup' element={<Signup/>}/>
         <Route path='/PackingList' element={<PackingList/>}/>
         <Route path='/Schedule' element={<Schedule/>}/>
+        <Route path='/Plan' element={<Plan/>}/>
       </Routes>
     </div>
   );
