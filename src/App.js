@@ -4,6 +4,7 @@ import Signup from "./components/pages/Signup";
 import PackingList from "./components/pages/PackingList";
 import Schedule from "./components/pages/Schedule";
 import Plan from "./components/pages/Plan";
+import MemberSelect from "./components/pages/MemberSelect";
 
 function App() {
   return (
@@ -14,6 +15,7 @@ function App() {
         <Route path='/PackingList' element={<PackingList/>}/>
         <Route path='/Schedule' element={<Schedule/>}/>
         <Route path='/Plan' element={<Plan/>}/>
+        <Route path='/MemberSelect' element={<MemberSelect/>}/>
       </Routes>
     </div>
   );

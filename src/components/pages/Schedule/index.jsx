@@ -114,6 +114,7 @@ const Schedule = () => {
                value={daycount}
                onChange={handleDayCount}
                placeholder='期間（日）'
+              //  style={{display:"none"}}
                />
       </div>
       {
