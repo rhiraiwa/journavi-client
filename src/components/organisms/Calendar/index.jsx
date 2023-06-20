@@ -113,9 +113,9 @@ const Calendar = () => {
   return (
     <div className="calendar">
       <div className="calendar-header">
-        <button onClick={previousMonths}>Previous</button>
+        <button onClick={previousMonths}>◀</button>
         <h2>{`${startDate.toLocaleString('default', { month: 'long', year: 'numeric' })} - ${new Date(startDate.getFullYear(), startDate.getMonth() + 1).toLocaleString('default', { month: 'long', year: 'numeric' })}`}</h2>
-        <button onClick={nextMonths}>Next</button>
+        <button onClick={nextMonths}>▶</button>
       </div>
       <FlexDiv additionalClassName='calendar-inputs'>
         <input type="text" placeholder="Start Date" value={selectedStartDate ? selectedStartDate.toLocaleDateString('ja-JP') : ''} readOnly />

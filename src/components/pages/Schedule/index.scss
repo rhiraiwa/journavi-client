@@ -1,86 +1,150 @@
-// /* index.scss */
+#schedule {
+  // border: 1px solid #ccc;
+  // padding: 20px;
+  text-align: center;
 
-// #schedule {
-//   max-width: 600px;
-//   margin: 0 auto;
-//   padding: 20px;
-//   font-family: Arial, sans-serif;
-//   background-color: #FDFDFD;
-//   border-radius: 8px;
-//   box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+  div {
+    margin-bottom: 10px;
+  }
 
-//   h2 {
-//     margin-bottom: 10px;
-//     font-size: 20px;
-//     color: #333;
-//   }
+  input[type="number"],
+  input[type="time"],
+  input[type="text"],
+  select {
+    width: 100%;
+    padding: 12px;
+    border: 1px solid #ccc;
+    border-radius: 4px;
+    background-color: #f8e7dc; /* くすんだピンクベージュ */
+    font-family: Arial, sans-serif;
+    font-size: 16px;
+    color: #5f5f5f; /* 暗めのグレー */
+    box-sizing: border-box;
+    outline: none;
 
-//   input[type="number"],
-//   input[type="time"],
-//   input[type="text"],
-//   select {
-//     width: 100%;
-//     margin-bottom: 10px;
-//     padding: 10px;
-//     border: 1px solid #ccc;
-//     border-radius: 4px;
-//     font-size: 14px;
-//     box-sizing: border-box; /* 追加 */
-//   }
+    &::placeholder {
+      color: #bfbfbf; /* より薄いグレー */
+    }
+  }
 
-//   button {
-//     padding: 10px 16px;
-//     background-color: #FFB3C1;
-//     color: white;
-//     border: none;
-//     border-radius: 4px;
-//     cursor: pointer;
-//     font-size: 14px;
-//     transition: background-color 0.3s ease;
-//   }
+  button {
+    width: 100%;
+    padding: 12px;
+    background-color: #f3b19e; /* くすんだサーモンピンク */
+    color: #fff;
+    border: none;
+    border-radius: 4px;
+    font-family: Arial, sans-serif;
+    font-size: 16px;
+    cursor: pointer;
+    transition: background-color 0.3s;
 
-//   button:hover {
-//     background-color: #FF9AAC;
-//   }
+    &:hover {
+      background-color: #df8f7b; /* より濃いサーモンピンク */
+    }
+  }
 
-//   table {
-//     width: 100%;
-//     border-collapse: collapse;
-//     margin-bottom: 20px;
-//   }
+  .handle-row-buttons {
+    margin-top: 10px;
+  }
 
-//   th, td {
-//     padding: 12px;
-//     text-align: left;
-//     border-bottom: 1px solid #ddd;
-//     font-size: 14px;
-//     color: #555;
-//   }
+  .flex-buttons {
+    button {
+      margin: 0 5px;
+    }
+  }
 
-//   th {
-//     background-color: #FFB3C1;
-//     color: white;
-//     font-weight: bold;
-//   }
+  h2 {
+    margin: 10px 0;
+    font-family: Arial, sans-serif;
+    font-size: 20px;
+    color: #5f5f5f; /* 暗めのグレー */
+  }
 
-//   tr:hover {
-//     background-color: #F9F9F9;
-//   }
+  table {
+    width: 100%;
+    border-collapse: collapse;
+    margin-bottom: 20px;
 
-//   .delete-button {
-//     display: inline-block;
-//     padding: 4px 8px;
-//     background-color: #FFB3C1;
-//     color: white;
-//     border: none;
-//     border-radius: 4px;
-//     cursor: pointer;
-//     font-size: 12px;
-//     transition: background-color 0.3s ease;
-//   }
+    th,
+    td {
+      padding: 12px;
+      border: 1px solid #ccc;
+      font-family: Arial, sans-serif;
+      font-size: 16px;
+      color: #5f5f5f; /* 暗めのグレー */
+    }
 
-//   .delete-button:hover {
-//     background-color: #FF9AAC;
-//   }
+    th {
+      background-color: #f4e9e1; /* くすんだベージュ */
+      font-weight: bold;
+    }
 
-// }
+    .main-info-row {
+      cursor: pointer;
+      transition: background-color 0.3s;
+
+      &.selected,
+      &:hover {
+        background-color: #e8d6cc; /* より薄いベージュ */
+      }
+
+      td:nth-child(2) {
+        width: 70%; /* eventの幅を調整 */
+        text-align: left;
+      }
+
+      .btn-group {
+        display: flex;
+        justify-content: flex-end;
+
+        button {
+          padding: 6px 12px; /* EditボタンとDeleteボタンのパディング調整 */
+          font-size: 14px; /* ボタンのフォントサイズ調整 */
+        }
+      }
+    }
+
+    .sub-info-row {
+      text-align: left;
+      background-color: #fbf6f3; /* より明るいベージュ */
+
+      td {
+        padding: 12px;
+      }
+
+      div {
+        span {
+          display: block;
+          color: #afafaf; /* より薄いグレー */
+
+          &:first-child {
+            font-weight: bold;
+          }
+        }
+      }
+    }
+  }
+
+  @media screen and (min-width: 768px) {
+    /* タブレット以上の画面幅に適用するスタイル */
+    max-width: 500px;
+    margin: 0 auto;
+
+    input[type="number"],
+    input[type="time"],
+    input[type="text"],
+    select {
+      font-size: 18px;
+    }
+
+    button {
+      padding: 12px 20px;
+      font-size: 18px;
+    }
+
+    h2 {
+      font-size: 24px;
+    }
+  }
+}
