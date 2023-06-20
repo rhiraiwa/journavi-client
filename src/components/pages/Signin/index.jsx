@@ -40,7 +40,7 @@ const Signin = () => {
              onChange={handlePassword}
              placeholder='パスワード' />
       <button onClick={executeSignin}>Sign in</button>
-      <button onClick={goToSignup}>Sign up</button>
+      <button id='sign-up-button' onClick={goToSignup}>Sign up</button>
     </div>
   )
 }
