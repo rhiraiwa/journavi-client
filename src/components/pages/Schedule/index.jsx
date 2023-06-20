@@ -1,6 +1,7 @@
 import React, { useState } from "react";
 import './index.scss';
 import FlexDiv from "../../atoms/FlexDiv";
+import Header from "../../organisms/Header";
 
 const Schedule = () => {
 
@@ -156,108 +157,111 @@ const Schedule = () => {
   }
 
   return (
-    <div id='schedule'>
-      <div>
-        <input
-          type='number'
-          value={daycount}
-          onChange={handleDayCount}
-          placeholder='期間（日）'
-        />
-      </div>
-      {(dayList.length !== 0 && daycount !== '') && (
-        <>
-          <div>
-            <select value={daySelect} onChange={handleDaySelect}>
-              {dayList.map((day, index) => (
-                <option key={index} value={day.value}>{day.label}</option>
-              ))}
-            </select>
-          </div>
-          <div>
-            <input
-              type='time'
-              id='schedule-time'
-              value={scheduleTime}
-              onChange={handleScheduleTime}
-              placeholder='時刻'
-            />
-            <input
-              type='text'
-              value={scheduleName}
-              onChange={handleScheduleName}
-              placeholder='イベント名'
-            />
-            <input
-              type='text'
-              value={schedulePlace}
-              onChange={handleSchedulePlace}
-              placeholder='場所'
-            />
-            <input
-              type='text'
-              value={scheduleNote}
-              onChange={handleScheduleNote}
-              placeholder='備考'
-            />
-            {!editMode && (
-              <div className='handle-row-buttons'>
-                <button onClick={addSchedule}>Add Schedule</button>
-              </div>
-            )}
-            {editMode && (
-              <FlexDiv additionalClassName='flex-buttons handle-row-buttons'>
-                <button onClick={executeEdit}>Update Schedule</button>
-                <button onClick={cancelEdit}>Cancel Edit</button>
-              </FlexDiv>
-            )}
-          </div>
-          <h2>{`${Number(daySelect) + 1} 日目`}</h2>
-          <table>
-            <thead>
-              <tr>
-                <th>time</th>
-                <th>event</th>
-              </tr>
-            </thead>
-            <tbody>
-              {scheduleList.map((schedule, index) => (
-                schedule.daySelect === Number(daySelect) && (
-                  <React.Fragment key={index}>
-                    <tr
-                      className={`main-info-row ${selectedRows.includes(index) ? 'selected' : ''}`}
-                      onClick={() => handleRowClick(index)}
-                    >
-                      <td>{schedule.time}</td>
-                      <td>{schedule.name}</td>
-                    </tr>
-                    {selectedRows.includes(index) && (
-                      <tr className='sub-info-row'>
-                        <td colSpan='2'>
-                          <div>
-                            <span>場所: {schedule.place}</span><br/>
-                            <span>備考: {schedule.note}</span><br/>
-                            {!editMode && (
-                              <FlexDiv additionalClassName='flex-buttons'>
-                                <button onClick={() => handleEdit(index)}>Edit</button>
-                                <button onClick={() => deleteSchedule(index)}>Del</button>
-                              </FlexDiv>
-                            )}
-                          </div>
-                        </td>
+    <>
+      <Header/>
+      <div className='page-body' id='schedule'>
+        <div>
+          <input
+            type='number'
+            value={daycount}
+            onChange={handleDayCount}
+            placeholder='期間（日）'
+          />
+        </div>
+        {(dayList.length !== 0 && daycount !== '') && (
+          <>
+            <div>
+              <select value={daySelect} onChange={handleDaySelect}>
+                {dayList.map((day, index) => (
+                  <option key={index} value={day.value}>{day.label}</option>
+                ))}
+              </select>
+            </div>
+            <div>
+              <input
+                type='time'
+                id='schedule-time'
+                value={scheduleTime}
+                onChange={handleScheduleTime}
+                placeholder='時刻'
+              />
+              <input
+                type='text'
+                value={scheduleName}
+                onChange={handleScheduleName}
+                placeholder='イベント名'
+              />
+              <input
+                type='text'
+                value={schedulePlace}
+                onChange={handleSchedulePlace}
+                placeholder='場所'
+              />
+              <input
+                type='text'
+                value={scheduleNote}
+                onChange={handleScheduleNote}
+                placeholder='備考'
+              />
+              {!editMode && (
+                <div className='handle-row-buttons'>
+                  <button onClick={addSchedule}>Add Schedule</button>
+                </div>
+              )}
+              {editMode && (
+                <FlexDiv additionalClassName='flex-buttons handle-row-buttons'>
+                  <button onClick={executeEdit}>Update Schedule</button>
+                  <button onClick={cancelEdit}>Cancel Edit</button>
+                </FlexDiv>
+              )}
+            </div>
+            <h2>{`${Number(daySelect) + 1} 日目`}</h2>
+            <table>
+              <thead>
+                <tr>
+                  <th>time</th>
+                  <th>event</th>
+                </tr>
+              </thead>
+              <tbody>
+                {scheduleList.map((schedule, index) => (
+                  schedule.daySelect === Number(daySelect) && (
+                    <React.Fragment key={index}>
+                      <tr
+                        className={`main-info-row ${selectedRows.includes(index) ? 'selected' : ''}`}
+                        onClick={() => handleRowClick(index)}
+                      >
+                        <td>{schedule.time}</td>
+                        <td>{schedule.name}</td>
                       </tr>
-                    )}
-                  </React.Fragment>
-                )
-              ))}
-            </tbody>
-          </table>
-        </>
-      )}
-      <div>
-        <button onClick={executeRegister}>Register</button>
+                      {selectedRows.includes(index) && (
+                        <tr className='sub-info-row'>
+                          <td colSpan='2'>
+                            <div>
+                              <span>場所: {schedule.place}</span><br/>
+                              <span>備考: {schedule.note}</span><br/>
+                              {!editMode && (
+                                <FlexDiv additionalClassName='flex-buttons'>
+                                  <button onClick={() => handleEdit(index)}>Edit</button>
+                                  <button onClick={() => deleteSchedule(index)}>Del</button>
+                                </FlexDiv>
+                              )}
+                            </div>
+                          </td>
+                        </tr>
+                      )}
+                    </React.Fragment>
+                  )
+                ))}
+              </tbody>
+            </table>
+          </>
+        )}
+        <div>
+          <button onClick={executeRegister}>Register</button>
+        </div>
       </div>
-    </div>
+    </>
   );
 };
 

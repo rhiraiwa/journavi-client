@@ -1,0 +1,55 @@
+.step-flow {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+
+  .step {
+    position: relative;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+
+    &:not(:first-child)::before {
+      content: '';
+      position: absolute;
+      top: calc(50% - 1px);
+      left: calc(-50% - 16px);
+      width: calc(100% + 32px);
+      height: 2px;
+      background-color: #ccc;
+    }
+
+    &.completed {
+      .step-number {
+        background-color: #f3b19e; /* くすんだサーモンピンク */
+        color: #fff;
+      }
+
+      &:not(:first-child)::before {
+        background-color: #f3b19e; /* くすんだサーモンピンク */
+      }
+    }
+
+    .step-number {
+      position: relative;
+      z-index: 1;
+      width: 32px;
+      height: 32px;
+      line-height: 32px;
+      border-radius: 50%;
+      background-color: #fff;
+      border: 1px solid #ccc;
+      font-family: Arial, sans-serif;
+      font-size: 16px;
+      color: #5f5f5f; /* 暗めのグレー */
+      text-align: center;
+    }
+
+    .step-label {
+      margin-top: 8px;
+      font-family: Arial, sans-serif;
+      font-size: 14px;
+      color: #5f5f5f; /* 暗めのグレー */
+    }
+  }
+}

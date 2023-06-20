@@ -1,9 +1,8 @@
 import { useState } from "react";
 import './index.scss';
+import Header from "../../organisms/Header";
 
 const PackingList = () => {
-
-  const userId = sessionStorage.getItem('userId');
 
   const [itemList, setItemList] = useState([]);
   const [itemId, setItemId] = useState(-1);
@@ -53,48 +52,48 @@ const PackingList = () => {
   }
 
   return (
-    <div id='packing-list'>
-      <div>
-        <label>{`userID:${userId}`}</label>
+    <>
+      <Header/>
+      <div className='page-body' id='packing-list'>
+        <div style={{display:"flex"}}>
+          <input type='text'
+                id='item-name'
+                value={itemName}
+                onChange={handleItemName}
+                placeholder='アイテム'/>
+          <button onClick={addItem}>add</button>
+        </div>
+        <table>
+          <thead>
+            <tr>
+              <th>ID</th>
+              <th>Name</th>
+              <th>Packed</th>
+              <th></th>
+            </tr>
+          </thead>
+          <tbody>
+            {
+              itemList.map((item, index) => (
+                <tr key={index}>
+                  <td>{index}</td>
+                  <td>{item.name}</td>
+                  <td>
+                    <input type='checkbox'
+                          onChange={() => handleIsPacked(index, item.isPacked)}
+                          checked={item.isPacked}/>
+                  </td>
+                  <td>
+                    <button onClick={() => deleteItem(index)}>X</button>
+                  </td>
+                </tr>
+              ))
+            }
+          </tbody>
+        </table>
+        <button onClick={executeRegister}>Register</button>
       </div>
-      <div style={{display:"flex"}}>
-        <input type='text'
-              id='item-name'
-              value={itemName}
-              onChange={handleItemName}
-              placeholder='アイテム'/>
-        <button onClick={addItem}>add</button>
-      </div>
-      <table>
-        <thead>
-          <tr>
-            <th>ID</th>
-            <th>Name</th>
-            <th>Packed</th>
-            <th></th>
-          </tr>
-        </thead>
-        <tbody>
-          {
-            itemList.map((item, index) => (
-              <tr key={index}>
-                <td>{index}</td>
-                <td>{item.name}</td>
-                <td>
-                  <input type='checkbox'
-                         onChange={() => handleIsPacked(index, item.isPacked)}
-                         checked={item.isPacked}/>
-                </td>
-                <td>
-                  <button onClick={() => deleteItem(index)}>X</button>
-                </td>
-              </tr>
-            ))
-          }
-        </tbody>
-      </table>
-      <button onClick={executeRegister}>Register</button>
-    </div>
+    </>
   );
 }
 

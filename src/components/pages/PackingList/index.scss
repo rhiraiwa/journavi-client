@@ -10,6 +10,7 @@ $background-color: #fbf6f3; /* より明るいベージュ */
 
   div {
     margin-bottom: 10px;
+    width: 100%
   }
 
   label {
@@ -19,7 +20,7 @@ $background-color: #fbf6f3; /* より明るいベージュ */
   }
 
   input[type="text"] {
-    width: 100%;
+    // width: 100%;
     padding: 12px;
     border: 1px solid #ccc;
     border-radius: 4px;

@@ -1,6 +1,7 @@
 import { useState } from "react";
 import FlexDiv from "../../atoms/FlexDiv";
 import './index.scss';
+import Header from "../../organisms/Header";
 
 const MemberSelect = () => {
 
@@ -44,37 +45,40 @@ const MemberSelect = () => {
   }
 
   return (
-    <div id='member-select'>
-      <FlexDiv>
-        <label>メンバーを選択してください</label>
-        <button>次へ</button>
-        <button>下書き保存</button>
-      </FlexDiv>
-      <div id='user-list-area'>
-        <table id='user-list'>
-          <thead>
-            <tr>
-              <th></th>
-              <th>ID</th>
-              <th>Name</th>
-            </tr>
-          </thead>
-          <tbody>
-            {
-              userList.map((user, index) => (
-                <tr key={index} onClick={()=>handleCheck(user.id)}>
-                  <td>
-                    <input type='checkbox' checked={user.attend} readOnly/>
-                  </td>
-                  <td>{user.id}</td>
-                  <td>{user.name}</td>
-                </tr>
-              ))
-            }
-          </tbody>
-        </table>
+    <>
+      <Header/>
+      <div className='page-body' id='member-select'>
+        <FlexDiv>
+          <label>メンバーを選択してください</label>
+          <button>次へ</button>
+          <button>下書き保存</button>
+        </FlexDiv>
+        <div id='user-list-area'>
+          <table id='user-list'>
+            <thead>
+              <tr>
+                <th></th>
+                <th>ID</th>
+                <th>Name</th>
+              </tr>
+            </thead>
+            <tbody>
+              {
+                userList.map((user, index) => (
+                  <tr key={index} onClick={()=>handleCheck(user.id)}>
+                    <td>
+                      <input type='checkbox' checked={user.attend} readOnly/>
+                    </td>
+                    <td>{user.id}</td>
+                    <td>{user.name}</td>
+                  </tr>
+                ))
+              }
+            </tbody>
+          </table>
+        </div>
       </div>
-    </div>
+    </>
   );
 }
 
