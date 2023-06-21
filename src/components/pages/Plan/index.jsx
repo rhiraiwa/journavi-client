@@ -1,29 +1,35 @@
 import React from 'react';
-import Calendar from '../../organisms/Calendar';
+import Header from '../../organisms/Header';
 import FlexDiv from '../../atoms/FlexDiv';
 import { useNavigate } from 'react-router-dom';
 import './index.scss';
-import Header from '../../organisms/Header';
+import PlanFooter from '../../organisms/PlanFooter';
 
 const Plan = () => {
 
   const navigate = useNavigate();
 
-  const goToMemberSelect = () => {
-    navigate('/MemberSelect');
+  const goToPortal = () => {
+    navigate('/Portal');
+  }
+
+  const goToTermSelect = () => {
+    navigate('/TermSelect');
   }
 
   return (
     <>
       <Header/>
       <div className='page-body' id='plan'>
-        <FlexDiv additionalClassName='custom-container'>
-          <label>期間を選択してください</label>
-          <button onClick={goToMemberSelect}>次へ</button>
-          <button>下書き保存</button>
-        </FlexDiv>
-        <Calendar/>
+        <div className='plan-discription'>
+          <label>旅行のタイトルと目的地を選択してください</label>
+        </div>
+        <div>
+          <input type='text' placeholder='タイトル'/>
+          <input type='text' placeholder='目的地'/>
+        </div>
       </div>
+      <PlanFooter handleBack={goToPortal} handleNext={goToTermSelect}/>
     </>
   )
 };

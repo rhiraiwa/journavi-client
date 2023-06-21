@@ -5,33 +5,18 @@ import './index.scss';
 const PortalMenu = () => {
   const cardItems = [
     {
-      title: 'Card 1',
-      description: 'This is the description for Card 1.',
+      title: '旅行計画補助',
+      description: '旅行の計画をサポートします',
       link: '/page1'
     },
     {
-      title: 'Card 2',
-      description: 'This is the description for Card 2.',
-      link: '/page2'
+      title: '旅のしおり作成',
+      description: '計画された旅行のしおりを作成します',
+      link: '/Plan'
     },
     {
-      title: 'Card 3',
-      description: 'This is the description for Card 3.',
-      link: '/page3'
-    },
-    {
-      title: 'Card 1',
-      description: 'This is the description for Card 1.',
-      link: '/page1'
-    },
-    {
-      title: 'Card 2',
-      description: 'This is the description for Card 2.',
-      link: '/page2'
-    },
-    {
-      title: 'Card 3',
-      description: 'This is the description for Card 3.',
+      title: 'しおり一覧',
+      description: '過去に作成した旅のしおりを照会します',
       link: '/page3'
     }
   ];

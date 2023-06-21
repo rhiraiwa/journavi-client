@@ -3,6 +3,7 @@ import FlexDiv from "../../atoms/FlexDiv";
 import './index.scss';
 import Header from "../../organisms/Header";
 import { useNavigate } from "react-router-dom";
+import PlanFooter from "../../organisms/PlanFooter";
 
 const MemberSelect = () => {
 
@@ -47,6 +48,10 @@ const MemberSelect = () => {
     setUserList(updatedData);
   }
 
+  const goToTermSelect = () => {
+    navigate('/TermSelect');
+  }
+
   const goToSchedule = () => {
     navigate('/Schedule');
   }
@@ -55,11 +60,9 @@ const MemberSelect = () => {
     <>
       <Header/>
       <div className='page-body' id='member-select'>
-        <FlexDiv>
+        <div className='plan-discription'>
           <label>メンバーを選択してください</label>
-          <button onClick={goToSchedule}>次へ</button>
-          <button>下書き保存</button>
-        </FlexDiv>
+        </div>
         <div id='user-list-area'>
           <table id='user-list'>
             <thead>
@@ -85,6 +88,7 @@ const MemberSelect = () => {
           </table>
         </div>
       </div>
+      <PlanFooter handleBack={goToTermSelect} handleNext={goToSchedule}/>
     </>
   );
 }

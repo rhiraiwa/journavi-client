@@ -1,12 +1,15 @@
 #member-select {
-  text-align: center;
 
-  label {
-    display: block;
+  .plan-discription {
     margin-bottom: 10px;
-    font-family: Arial, sans-serif;
-    font-size: 16px;
-    color: #5f5f5f; /* 暗めのグレー */
+
+    label {
+      margin-right: 10px;
+      font-family: Arial, sans-serif;
+      font-size: 16px;
+      color: #5f5f5f; /* 暗めのグレー */
+      align-self: center;
+    }
   }
 
   button {
@@ -27,7 +30,7 @@
   }
 
   #user-list-area {
-    margin-top: 20px;
+    margin-top: 10px;
 
     table#user-list {
       width: 100%;
