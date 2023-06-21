@@ -1,0 +1,32 @@
+#portal {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  background-color: #f8e7dc;
+  padding: 10px;
+  position: sticky;
+  top: 55px;
+
+  .tab-item {
+    font-family: Arial, sans-serif;
+    font-size: 16px;
+    color: #5f5f5f;
+    cursor: pointer;
+    padding: 10px;
+    border-radius: 4px;
+
+    &.active {
+      background-color: #f3b19e;
+      color: #fff;
+    }
+  }
+
+  .tab-content {
+    margin-top: 10px;
+    padding: 10px;
+    background-color: #fbf6f3;
+    font-family: Arial, sans-serif;
+    font-size: 16px;
+    color: #5f5f5f;
+  }
+}

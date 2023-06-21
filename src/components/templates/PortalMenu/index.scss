@@ -1,0 +1,41 @@
+.card-component {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: center;
+
+  .card {
+    background-color: #f8f8f8;
+    border: 1px solid #ccc;
+    border-radius: 4px;
+    padding: 16px;
+    margin: 10px;
+    width: 300px;
+    text-align: center;
+
+    .card-title {
+      font-size: 20px;
+      font-weight: bold;
+      margin-bottom: 10px;
+    }
+
+    .card-description {
+      font-size: 16px;
+      color: #666;
+      margin-bottom: 20px;
+    }
+
+    .card-link {
+      display: inline-block;
+      padding: 8px 16px;
+      background-color: #f3b19e;
+      color: #fff;
+      text-decoration: none;
+      border-radius: 4px;
+      font-weight: bold;
+
+      &:hover {
+        background-color: #df8f7b;
+      }
+    }
+  }
+}

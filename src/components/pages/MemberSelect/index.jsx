@@ -2,8 +2,11 @@ import { useState } from "react";
 import FlexDiv from "../../atoms/FlexDiv";
 import './index.scss';
 import Header from "../../organisms/Header";
+import { useNavigate } from "react-router-dom";
 
 const MemberSelect = () => {
+
+  const navigate = useNavigate();
 
   const [userList, setUserList] = useState([
     {
@@ -23,7 +26,7 @@ const MemberSelect = () => {
     },
     {
       "id": 40,
-      "name": "ミユキ",
+      "name": "ユキ",
       "attend": false
     },
     {
@@ -44,13 +47,17 @@ const MemberSelect = () => {
     setUserList(updatedData);
   }
 
+  const goToSchedule = () => {
+    navigate('/Schedule');
+  }
+
   return (
     <>
       <Header/>
       <div className='page-body' id='member-select'>
         <FlexDiv>
           <label>メンバーを選択してください</label>
-          <button>次へ</button>
+          <button onClick={goToSchedule}>次へ</button>
           <button>下書き保存</button>
         </FlexDiv>
         <div id='user-list-area'>

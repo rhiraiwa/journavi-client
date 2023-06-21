@@ -22,7 +22,7 @@ const Signin = () => {
     if (!(userId === 'admin' && password === 'admin')) return;
 
     sessionStorage.setItem('userId', userId);
-    navigate('/Schedule');
+    navigate('/Portal');
   }
 
   const goToSignup = () => {
