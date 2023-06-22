@@ -2,10 +2,10 @@ import React, { useState } from 'react';
 import './index.scss';
 import FlexDiv from '../../atoms/FlexDiv';
 
-const Calendar = () => {
+const Calendar = ({selectedStartDate, setSelectedStartDate, selectedEndDate, setSelectedEndDate}) => {
   const [startDate, setStartDate] = useState(new Date());
-  const [selectedStartDate, setSelectedStartDate] = useState(null);
-  const [selectedEndDate, setSelectedEndDate] = useState(null);
+  // const [selectedStartDate, setSelectedStartDate] = useState(null);
+  // const [selectedEndDate, setSelectedEndDate] = useState(null);
 
   const previousMonths = () => {
     setStartDate(prevStartDate => {

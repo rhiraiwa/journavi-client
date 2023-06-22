@@ -1,13 +1,18 @@
-import React, { useState } from "react";
+import React, { useEffect, useState } from "react";
 import './index.scss';
 import FlexDiv from "../../atoms/FlexDiv";
 import Header from "../../organisms/Header";
+import { useLocation } from "react-router-dom";
 
 const Schedule = () => {
 
+  const location = useLocation();
+
+  const [state] = useState(location.state);
+
   const [scheduleList, setScheduleList] = useState([]);
   const [scheduleId, setScheduleId] = useState(-1);
-  const [daycount, setDayCount] = useState('');
+  const [daycount, setDayCount] = useState();
   const [dayList, setDayList] = useState([]);
   const [daySelect, setDaySelect] = useState('');
   const [scheduleTime, setScheduleTime] = useState('');
@@ -18,22 +23,17 @@ const Schedule = () => {
   const [editMode, setEditMode] = useState(false); // 編集モードのフラグ
   const [editIndex, setEditIndex] = useState(-1); // 編集中の行のインデックス
 
-  const uniqueId = () => {
-    const newId = scheduleId + 1;
-    setScheduleId(newId);
-    return newId;
-  };
+  useEffect(() => {
+    let startTime = state.plan.startDate.getTime();
+    let endTime = state.plan.endDate.getTime();
 
-  const handleDayCount = (event) => {
-    let value = event.target.value;
-    if (value === '' || value <= 0) {
-      setDayCount('');
-      return;
-    }
-    setDayCount(value);
+    let timeDiff = endTime - startTime;
+    let dayDiff = Math.ceil(timeDiff / (24 * 60 * 60 * 1000));
+
+    setDayCount(Number(dayDiff + 1));
 
     let newList = [];
-    for (let i = 0; i < Number(value); i++) {
+    for (let i = 0; i < Number(dayDiff + 1); i++) {
       newList.push({
         label: `Day ${i + 1}`,
         value: i
@@ -41,7 +41,13 @@ const Schedule = () => {
     }
     setDaySelect(newList[0].value);
     setDayList(newList);
-  }
+  }, []);
+
+  const uniqueId = () => {
+    const newId = scheduleId + 1;
+    setScheduleId(newId);
+    return newId;
+  };
 
   const handleDaySelect = (event) => {
     setDaySelect(event.target.value);
@@ -153,18 +159,25 @@ const Schedule = () => {
   };
 
   const executeRegister = () => {
-    console.log(scheduleList);
+    let plan = {
+      title: state.plan.title,
+      destination: state.plan.destination,
+      startDate: state.plan.startDate,
+      endDate: state.plan.endDate,
+      member: state.plan.member,
+      schedule: scheduleList
+    }
+    console.log(plan);
   }
 
   return (
     <>
       <Header/>
       <div className='page-body' id='schedule'>
-        <div>
+        <div style={{display:"none"}}>
           <input
             type='number'
             value={daycount}
-            onChange={handleDayCount}
             placeholder='期間（日）'
           />
         </div>
