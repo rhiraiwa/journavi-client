@@ -1,10 +1,9 @@
 import React, { useState } from 'react';
+import { useLocation, useNavigate } from 'react-router-dom';
 import Header from '../../organisms/Header';
 import Calendar from '../../organisms/Calendar';
-import FlexDiv from '../../atoms/FlexDiv';
-import { useLocation, useNavigate } from 'react-router-dom';
-import './index.scss';
 import PlanFooter from '../../organisms/PlanFooter';
+import './index.scss';
 
 const TermSelect = () => {
 
@@ -17,17 +16,30 @@ const TermSelect = () => {
   const [endDate, setEndDate] = useState('');
 
   const goToPlan = () => {
-    navigate('/Plan');
-  }
 
-  const goToMemberSelect = () => {
     let plan = {
       title: state.plan.title,
       destination: state.plan.destination,
       startDate: startDate,
       endDate: endDate
     }
-    console.log(plan);
+
+    navigate('/Plan', {state: {plan: plan}});
+  }
+
+  const goToMemberSelect = () => {
+    if (startDate === '' || endDate === '' ) {
+      alert('期間が設定されていません');
+      return;
+    }
+
+    let plan = {
+      title: state.plan.title,
+      destination: state.plan.destination,
+      startDate: startDate,
+      endDate: endDate
+    }
+    
     navigate('/MemberSelect', {state: {plan: plan}});
   }
 

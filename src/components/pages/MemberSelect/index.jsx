@@ -1,5 +1,4 @@
 import { useState } from "react";
-import FlexDiv from "../../atoms/FlexDiv";
 import './index.scss';
 import Header from "../../organisms/Header";
 import { useLocation, useNavigate } from "react-router-dom";
@@ -52,7 +51,16 @@ const MemberSelect = () => {
   }
 
   const goToTermSelect = () => {
-    navigate('/TermSelect');
+    
+    let plan = {
+      title: state.plan.title,
+      destination: state.plan.destination,
+      startDate: state.plan.startDate,
+      endDate: state.plan.endDate,
+      member: []
+    };
+
+    navigate('/TermSelect', {state: {plan: plan}});
   }
 
   const goToSchedule = () => {
@@ -60,6 +68,11 @@ const MemberSelect = () => {
 
     for (let i = 0; i < userList.length; i++) {
       if (userList[i].attend) member.push(userList[i].id)
+    }
+
+    if (member.length === 0) {
+      alert('メンバーが選択されていません');
+      return;
     }
 
     let plan = {

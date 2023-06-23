@@ -1,11 +1,13 @@
 import React, { useEffect, useState } from "react";
-import './index.scss';
+import { useLocation, useNavigate } from "react-router-dom";
 import FlexDiv from "../../atoms/FlexDiv";
 import Header from "../../organisms/Header";
-import { useLocation } from "react-router-dom";
+import './index.scss';
+import PlanFooter from "../../organisms/PlanFooter";
 
 const Schedule = () => {
 
+  const navigate = useNavigate();
   const location = useLocation();
 
   const [state] = useState(location.state);
@@ -158,7 +160,20 @@ const Schedule = () => {
     clearInput();
   };
 
-  const executeRegister = () => {
+  const goToMemberSelect = () => {
+    let plan = {
+      title: state.plan.title,
+      destination: state.plan.destination,
+      startDate: state.plan.startDate,
+      endDate: state.plan.endDate,
+      member: state.plan.member,
+      schedule: []
+    }
+    
+    navigate('/MemberSelect', {state: {plan: plan}});
+  }
+
+  const goToConfirmPlan = () => {
     let plan = {
       title: state.plan.title,
       destination: state.plan.destination,
@@ -167,13 +182,17 @@ const Schedule = () => {
       member: state.plan.member,
       schedule: scheduleList
     }
-    console.log(plan);
+    
+    navigate('/Portal', {state: {plan: plan}})
   }
 
   return (
     <>
       <Header/>
       <div className='page-body' id='schedule'>
+        <div className='plan-discription'>
+          <label>スケジュールを入力してください</label>
+        </div>
         <div style={{display:"none"}}>
           <input
             type='number'
@@ -270,9 +289,7 @@ const Schedule = () => {
             </table>
           </>
         )}
-        <div>
-          <button onClick={executeRegister}>Register</button>
-        </div>
+        <PlanFooter handleBack={goToMemberSelect} handleNext={goToConfirmPlan}/>
       </div>
     </>
   );

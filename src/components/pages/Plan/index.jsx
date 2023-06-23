@@ -26,6 +26,11 @@ const Plan = () => {
   }
 
   const goToTermSelect = () => {
+    if (title === '' || destination === '') {
+      alert('タイトルと目的地は入力必須です');
+      return;
+    }
+
     let plan = {
       title: title,
       destination: destination
