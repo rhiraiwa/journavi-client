@@ -1,17 +1,13 @@
 import React, { useState } from 'react';
 import Header from '../../organisms/Header';
-import './index.scss'
 import PortalMenu from '../../templates/PortalMenu';
+import './index.scss'
 
 const Portal = () => {
   const [activeTab, setActiveTab] = useState(0);
 
   const handleTabClick = (index) => {
     setActiveTab(index);
-  };
-
-  const TabContent1 = () => {
-    return <div>タブ 1 のコンテンツ</div>;
   };
 
   const TabContent2 = () => {
@@ -25,8 +21,7 @@ const Portal = () => {
   const tabItems = [
     { title: 'Menu', content: <PortalMenu/> },
     { title: 'Schedule', content: <TabContent2 /> },
-    { title: 'Package', content: <TabContent3 /> },
-    { title: 'Tel', content: <TabContent3 /> },
+    { title: 'Package', content: <TabContent3 /> }
   ];
 
   return (

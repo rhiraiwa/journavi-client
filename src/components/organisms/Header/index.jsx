@@ -1,4 +1,5 @@
 import React from 'react';
+import { Link } from 'react-router-dom';
 import './index.scss';
 
 const Header = () => {
@@ -7,11 +8,15 @@ const Header = () => {
 
   return (
     <header className="header">
-      <div className="logo"><a href='/#/Portal'>Logo</a></div>
+      <div className="logo"><Link to='/Portal'>Logo</Link></div>
       <nav className="nav">
         <ul className="nav-list">
-          <li className="nav-item"><a href='/#/Plan'>NewPlan</a></li>
-          <li className="nav-item"><a href='/#/PackingList'>PckingList</a></li>
+          <li className="nav-item">
+            <Link to='/Plan'>NewPlan</Link>
+          </li>
+          <li className="nav-item">
+            <Link to='/PackingList'>PackingList</Link>
+          </li>
         </ul>
       </nav>
       <div className='user'>

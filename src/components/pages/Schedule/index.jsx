@@ -178,7 +178,7 @@ const Schedule = ({isReference=false, referenceList=[]}) => {
   };
 
   const goToMap = (address) => {
-    let url = `https://maps.google.com/maps?q=${address}`;
+    let url = `https://maps.google.com/maps?q=${encodeURIComponent(address)}`;
     window.open(url, '_blank');
   }
 
