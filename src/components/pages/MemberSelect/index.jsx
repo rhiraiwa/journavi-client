@@ -57,20 +57,25 @@ const MemberSelect = () => {
       destination: state.plan.destination,
       startDate: state.plan.startDate,
       endDate: state.plan.endDate,
-      member: []
+      members: []
     };
 
     navigate('/TermSelect', {state: {plan: plan}});
   }
 
   const goToSchedule = () => {
-    let member = [];
+    let members = [];
 
     for (let i = 0; i < userList.length; i++) {
-      if (userList[i].attend) member.push(userList[i].id)
+      if (userList[i].attend) {
+        members.push({
+          id: userList[i].id,
+          name: userList[i].name
+        });
+      }
     }
 
-    if (member.length === 0) {
+    if (members.length === 0) {
       alert('メンバーが選択されていません');
       return;
     }
@@ -80,7 +85,7 @@ const MemberSelect = () => {
       destination: state.plan.destination,
       startDate: state.plan.startDate,
       endDate: state.plan.endDate,
-      member: member
+      members: members
     };
 
     console.log(plan);

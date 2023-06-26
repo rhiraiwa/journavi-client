@@ -1,0 +1,109 @@
+@mixin form-field {
+  label {
+    font-family: Arial, sans-serif;
+    font-size: 16px;
+    color: #5f5f5f;
+    width: 100px;
+    margin-left: 8px;
+  }
+
+  input[type="text"] {
+    flex: 1;
+    padding: 12px;
+    border: 1px solid #ccc;
+    border-radius: 4px;
+    background-color: #f8e7dc;
+    font-family: Arial, sans-serif;
+    font-size: 16px;
+    color: #5f5f5f;
+    box-sizing: border-box;
+    outline: none;
+    margin-right: 8px;
+  }
+}
+
+#confirm-plan {
+  padding: 20px;
+
+  #plan-area {
+    margin-bottom: 10px;
+
+    div {
+      display: flex;
+      align-items: center;
+      margin-bottom: 10px;
+    }
+
+    @include form-field;
+  }
+
+  #term-area {
+    margin-bottom: 10px;
+
+    div {
+      display: flex;
+      align-items: center;
+      margin-bottom: 10px;
+    }
+
+    @include form-field;
+  }
+
+  #member-area {
+    div {
+      display: flex;
+      align-items: center;
+      margin-bottom: 10px;
+    }
+
+    label {
+      font-family: Arial, sans-serif;
+      font-size: 16px;
+      color: #5f5f5f;
+      width: 100px;
+      margin-left: 8px;
+    }
+
+    table {
+      flex: 1;
+      padding: 12px;
+      border: 1px solid #ccc;
+      border-radius: 4px;
+      background-color: #f8e7dc;
+      font-family: Arial, sans-serif;
+      font-size: 16px;
+      color: #5f5f5f;
+      box-sizing: border-box;
+      outline: none;
+      margin-right: 8px;
+    }
+  }
+
+  #schedule-area {
+    
+    label {
+      font-family: Arial, sans-serif;
+      font-size: 16px;
+      color: #5f5f5f;
+      width: 100px;
+      margin-left: 8px;
+    }
+  }
+
+  button {
+    width: 100%;
+    padding: 12px;
+    background-color: #f3b19e; /* くすんだサーモンピンク */
+    color: #fff;
+    border: none;
+    border-radius: 4px;
+    font-family: Arial, sans-serif;
+    font-size: 16px;
+    cursor: pointer;
+    transition: background-color 0.3s;
+
+    &:hover {
+      background-color: #df8f7b; /* より濃いサーモンピンク */
+    }
+  }
+}
