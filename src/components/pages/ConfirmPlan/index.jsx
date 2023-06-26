@@ -3,7 +3,6 @@ import { useLocation, useNavigate } from "react-router-dom";
 import Header from "../../organisms/Header";
 import Schedule from "../Schedule";
 import './index.scss';
-import FlexDiv from "../../atoms/FlexDiv";
 
 const ConfirmPlan = () => {
 

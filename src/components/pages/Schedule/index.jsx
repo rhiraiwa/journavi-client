@@ -20,6 +20,8 @@ const Schedule = ({isReference=false, referenceList=[]}) => {
   const [scheduleTime, setScheduleTime] = useState('');
   const [scheduleName, setScheduleName] = useState('');
   const [schedulePlace, setSchedulePlace] = useState('');
+  const [scheduleAddress, setScheduleAddress] = useState('');
+  const [scheduleTel, setScheduleTel] = useState('');
   const [scheduleNote, setScheduleNote] = useState('');
   const [selectedRows, setSelectedRows] = useState([]); // 選択された行のインデックスの配列
   const [editMode, setEditMode] = useState(false); // 編集モードのフラグ
@@ -66,6 +68,14 @@ const Schedule = ({isReference=false, referenceList=[]}) => {
   const handleSchedulePlace = (event) => {
     setSchedulePlace(event.target.value);
   }
+  
+  const handleScheduleAddress = (event) => {
+    setScheduleAddress(event.target.value);
+  }
+  
+  const handleScheduleTel = (event) => {
+    setScheduleTel(event.target.value);
+  }
 
   const handleScheduleNote = (event) => {
     setScheduleNote(event.target.value);
@@ -78,6 +88,8 @@ const Schedule = ({isReference=false, referenceList=[]}) => {
       time: scheduleTime,
       name: scheduleName,
       place: schedulePlace,
+      address: scheduleAddress,
+      tel: scheduleTel,
       note: scheduleNote
     };
 
@@ -104,12 +116,14 @@ const Schedule = ({isReference=false, referenceList=[]}) => {
     setScheduleTime('');
     setScheduleName('');
     setSchedulePlace('');
+    setScheduleAddress('');
+    setScheduleTel('');
     setScheduleNote('');
     document.getElementById('schedule-time').focus();
   }
 
   const deleteSchedule = (index) => {
-    const updatedList = scheduleList.filter((schedule, i) => i !== index);
+    const updatedList = scheduleList.filter((_, i) => i !== index);
     setScheduleList(updatedList);
     setSelectedRows(selectedRows.filter((rowIndex) => rowIndex !== index));
   }
@@ -128,10 +142,12 @@ const Schedule = ({isReference=false, referenceList=[]}) => {
     setEditMode(true);
     setEditIndex(index);
 
-    const { time, name, place, note } = scheduleList[index];
+    const { time, name, place, address, tel, note } = scheduleList[index];
     setScheduleTime(time);
     setScheduleName(name);
     setSchedulePlace(place);
+    setScheduleAddress(address);
+    setScheduleTel(tel);
     setScheduleNote(note);
 
     document.getElementById('schedule-time').focus();
@@ -144,6 +160,8 @@ const Schedule = ({isReference=false, referenceList=[]}) => {
       time: scheduleTime,
       name: scheduleName,
       place: schedulePlace,
+      address: scheduleAddress,
+      tel: scheduleTel,
       note: scheduleNote
     };
 
@@ -158,6 +176,11 @@ const Schedule = ({isReference=false, referenceList=[]}) => {
     setEditIndex(-1);
     clearInput();
   };
+
+  const goToMap = (address) => {
+    let url = `https://maps.google.com/maps?q=${address}`;
+    window.open(url, '_blank');
+  }
 
   const goToMemberSelect = () => {
     let plan = {
@@ -238,6 +261,18 @@ const Schedule = ({isReference=false, referenceList=[]}) => {
                     />
                     <input
                       type='text'
+                      value={scheduleAddress}
+                      onChange={handleScheduleAddress}
+                      placeholder='住所'
+                    />
+                    <input
+                      type='text'
+                      value={scheduleTel}
+                      onChange={handleScheduleTel}
+                      placeholder='電話番号'
+                    />
+                    <input
+                      type='text'
                       value={scheduleNote}
                       onChange={handleScheduleNote}
                       placeholder='備考'
@@ -280,8 +315,36 @@ const Schedule = ({isReference=false, referenceList=[]}) => {
                         <tr className='sub-info-row'>
                           <td colSpan='2'>
                             <div>
-                              <span>場所: {schedule.place}</span><br/>
-                              <span>備考: {schedule.note}</span><br/>
+                              {
+                                schedule.place !== '' && (
+                                  <><span>場所: {schedule.place}</span><br /></>
+                                )
+                              }
+                              {
+                                schedule.address !== '' && (
+                                  <>
+                                    <span>住所:　
+                                      <a onClick={() => goToMap(schedule.address)}>{schedule.address}</a>
+                                    </span>
+                                    <br/>
+                                  </>
+                                )
+                              }
+                              {
+                                schedule.tel !== '' && (
+                                  <>
+                                    <span>電話番号:　
+                                      <a href="tel:+1234567890">{schedule.tel}</a>
+                                    </span>
+                                    <br/>
+                                  </>
+                                )
+                              }
+                              {
+                                schedule.note !== '' && (
+                                  <><span>備考: {schedule.note}</span><br/></>
+                                )
+                              }
                               {!editMode && !isReference && (
                                 <FlexDiv additionalClassName='flex-buttons'>
                                   <button onClick={() => handleEdit(index)}>Edit</button>
