@@ -2,8 +2,8 @@ import React, { useEffect, useState } from "react";
 import { useLocation, useNavigate } from "react-router-dom";
 import FlexDiv from "../../atoms/FlexDiv";
 import Header from "../../organisms/Header";
-import './index.scss';
 import PlanFooter from "../../organisms/PlanFooter";
+import './index.scss';
 
 const Schedule = ({isReference=false, referenceList=[]}) => {
 

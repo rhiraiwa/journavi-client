@@ -50,7 +50,9 @@ const ConfirmPlan = () => {
               <tbody>
                 {
                   plan.members.map((member, index) => (
-                    <tr><td>{`・${member.name}`}</td></tr>
+                    <tr key={index}>
+                      <td>{`・${member.name}`}</td>
+                    </tr>
                   ))
                 }
               </tbody>

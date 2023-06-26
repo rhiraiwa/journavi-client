@@ -1,11 +1,13 @@
 import React, { useState } from 'react';
-import './index.scss';
 import FlexDiv from '../../atoms/FlexDiv';
+import './index.scss';
 
-const Calendar = ({selectedStartDate, setSelectedStartDate, selectedEndDate, setSelectedEndDate}) => {
+const Calendar = ({selectedStartDate,
+                   setSelectedStartDate,
+                   selectedEndDate,
+                   setSelectedEndDate}) => {
+
   const [startDate, setStartDate] = useState(new Date());
-  // const [selectedStartDate, setSelectedStartDate] = useState(null);
-  // const [selectedEndDate, setSelectedEndDate] = useState(null);
 
   const previousMonths = () => {
     setStartDate(prevStartDate => {
@@ -29,28 +31,33 @@ const Calendar = ({selectedStartDate, setSelectedStartDate, selectedEndDate, set
 
   const handleDateClick = (day, year, month) => {
     const selectedDate = new Date(year, month, day);
+    
     if (selectedStartDate && selectedEndDate) {
       setSelectedStartDate(selectedDate);
       setSelectedEndDate(null);
     } else if (selectedStartDate && !selectedEndDate) {
+      
       if (selectedDate < selectedStartDate) {
         setSelectedEndDate(selectedStartDate);
         setSelectedStartDate(selectedDate);
       } else {
         setSelectedEndDate(selectedDate);
       }
+
     } else {
       setSelectedStartDate(selectedDate);
     }
   };
 
   const isDateSelected = (day, year, month) => {
+
     if (selectedStartDate && selectedEndDate) {
       const startDate = new Date(selectedStartDate);
       const endDate = new Date(selectedEndDate);
       const currentDate = new Date(year, month, day);
       return currentDate >= startDate && currentDate <= endDate;
     }
+
     return false;
   };
 
@@ -66,12 +73,12 @@ const Calendar = ({selectedStartDate, setSelectedStartDate, selectedEndDate, set
 
       const calendarDays = [];
 
-      // Add empty cells for previous month
+      // empty cells for previous month
       for (let j = 0; j < firstDayOfWeek; j++) {
         calendarDays.push(<div key={`empty-${j}`} className="calendar-day empty"></div>);
       }
 
-      // Add days for current month
+      // days for current month
       for (let day = 1; day <= daysInMonth; day++) {
         const dayOfWeek = new Date(year, month, day).getDay();
         const classNames = dayOfWeek === 0 ? 'calendar-day sunday' : (dayOfWeek === 6 ? 'calendar-day saturday' : 'calendar-day');

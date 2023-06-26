@@ -1,8 +1,8 @@
 import React, { useState } from 'react';
-import Header from '../../organisms/Header';
 import { useNavigate } from 'react-router-dom';
-import './index.scss';
+import Header from '../../organisms/Header';
 import PlanFooter from '../../organisms/PlanFooter';
+import './index.scss';
 
 const Plan = () => {
 
@@ -35,6 +35,7 @@ const Plan = () => {
       title: title,
       destination: destination
     }
+    
     navigate('/TermSelect', {state: {plan: plan}});
   }
 
@@ -46,8 +47,14 @@ const Plan = () => {
           <label>旅行のタイトルと目的地を選択してください</label>
         </div>
         <div>
-          <input type='text' value={title} onChange={handleTitle} placeholder='タイトル'/>
-          <input type='text' value={destination} onChange={handleDestination} placeholder='目的地'/>
+          <input type='text'
+                 value={title}
+                 onChange={handleTitle}
+                 placeholder='タイトル'/>
+          <input type='text'
+                 value={destination}
+                 onChange={handleDestination}
+                 placeholder='目的地'/>
         </div>
       </div>
       <PlanFooter handleBack={goToPortal} handleNext={goToTermSelect}/>

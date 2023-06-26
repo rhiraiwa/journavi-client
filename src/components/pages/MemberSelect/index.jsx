@@ -1,8 +1,8 @@
 import { useState } from "react";
-import './index.scss';
-import Header from "../../organisms/Header";
 import { useLocation, useNavigate } from "react-router-dom";
+import Header from "../../organisms/Header";
 import PlanFooter from "../../organisms/PlanFooter";
+import './index.scss';
 
 const MemberSelect = () => {
 
@@ -88,7 +88,6 @@ const MemberSelect = () => {
       members: members
     };
 
-    console.log(plan);
     navigate('/Schedule', {state: {plan: plan}});
   }
 

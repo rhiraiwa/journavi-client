@@ -50,7 +50,10 @@ const TermSelect = () => {
         <div className='plan-discription'>
           <label>期間を選択してください</label>
         </div>
-        <Calendar selectedStartDate={startDate} setSelectedStartDate={setStartDate} selectedEndDate={endDate} setSelectedEndDate={setEndDate}/>
+        <Calendar selectedStartDate={startDate}
+                  setSelectedStartDate={setStartDate}
+                  selectedEndDate={endDate}
+                  setSelectedEndDate={setEndDate}/>
       </div>
       <PlanFooter handleBack={goToPlan} handleNext={goToMemberSelect}/>
     </>
